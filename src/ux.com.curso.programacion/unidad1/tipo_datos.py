@@ -18,6 +18,10 @@ def tipos_datos_compuestos():
     tupla=(19,29,39,49)
     diccionario ={"Nombre": "gael", "edad": 30, "ciudad": "Cancun"}
 
+    print(lista)
+    print(tupla)
+    print(diccionario)
+
 def main():
     datos()
     tipos_datos_compuestos()
