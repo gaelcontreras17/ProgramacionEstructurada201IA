@@ -17,3 +17,9 @@ def demostracion():
             print(f"Usted está en el semestre: {semestre}")
         case _:
             print("Opción no válida")
+
+def main():
+    demostracion()
+
+if __name__ == "__main__":
+    main()

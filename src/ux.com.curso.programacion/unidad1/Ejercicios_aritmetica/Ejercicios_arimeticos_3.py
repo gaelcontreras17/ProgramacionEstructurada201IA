@@ -13,8 +13,9 @@ def mostrar_math(numero):
     print("El resultado de sen^2(x) + cos^2(x) es:", resultado1)
 
 def main():
-    numero = float(input("Ingrese un número para calcular su seno y coseno: "))
-    mostrar_math(numero)
+    numero = float (input("Ingrese número: "))
+    mostrar_funciones_math (numero)
+    tangente(numero)
 
 if __name__ == "__main__":
     main()
