@@ -8,7 +8,7 @@ def main():
         try:
             lectura = float(input(f"Ingresa la lectura {i+1} (%): "))
         except ValueError:
-            print("❌ Ingresa solo números")
+            print(" Ingresa solo números")
             continue
         
         if 65 <= lectura <= 85:
