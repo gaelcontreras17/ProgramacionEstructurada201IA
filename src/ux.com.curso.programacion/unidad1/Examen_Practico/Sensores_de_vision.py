@@ -9,7 +9,7 @@ def main():
         try:
             lote = float(input("Ingresa el tamaño del lote (MB): "))
         except ValueError:
-            print("❌ Ingresa solo números")
+            print(" Ingresa solo números")
             continue
         
         total_vram += lote
