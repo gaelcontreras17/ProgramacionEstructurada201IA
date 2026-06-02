@@ -22,19 +22,10 @@ def limpiar_nombre_usuario(nombre_sucio):
 # RETO 2: Buscador de Palabras Prohibidas
 # =====================================================================
 def contiene_palabra_bloqueada(mensaje_chat, palabra_prohibida):
-    largo_mensaje = len(mensaje_chat)
-    largo_palabra = len(palabra_prohibida)
-    
-    for i in range(largo_mensaje - largo_palabra + 1):
-        coincidencia = True
-        for j in range(largo_palabra):
-            if mensaje_chat[i + j] != palabra_prohibida[j]:
-                coincidencia = False
-                break
-        if coincidencia:
-            return True
-            
-    return False
+    # CAMBIO: Se reemplazó el doble bucle anidado que comparaba carácter
+    #         por carácter por el operador 'in' de Python, que busca
+    #         subcadenas de forma optimizada en una sola línea.
+    return palabra_prohibida in mensaje_chat
 
 
 # =====================================================================
