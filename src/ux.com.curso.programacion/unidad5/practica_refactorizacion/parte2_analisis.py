@@ -32,37 +32,24 @@ def contiene_palabra_bloqueada(mensaje_chat, palabra_prohibida):
 # RETO 3: Generador de Contraseñas Temporales
 # =====================================================================
 def generar_clave_temporal():
+    # CAMBIO 1: Se reemplazó el bucle manual con concatenación por
+    #           random.choices(), que selecciona N elementos al azar
+    #           en una sola llamada.
+    # CAMBIO 2: Se usa ''.join() para construir la cadena final,
+    #           más eficiente que concatenar con + dentro de un bucle.
     caracteres_validos = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789"
-    clave_generada = ""
-    
-    for i in range(8):
-        indice_aleatorio = random.randint(0, len(caracteres_validos) - 1)
-        caracter_elegido = caracteres_validos[indice_aleatorio]
-        clave_generada = clave_generada + caracter_elegido
-        
-    return clave_generada
+    return ''.join(random.choices(caracteres_validos, k=8))
 
 
 # =====================================================================
 # RETO 4: Buscador del Valor Central (Mediana)
 # =====================================================================
 def calcular_mediana_latencia(lista_pings):
-    pings_ordenados = list(lista_pings)
-    n = len(pings_ordenados)
-    
-    for i in range(n):
-        for j in range(0, n - i - 1):
-            if pings_ordenados[j] > pings_ordenados[j + 1]:
-                temporal = pings_ordenados[j]
-                pings_ordenados[j] = pings_ordenados[j + 1]
-                pings_ordenados[j + 1] = temporal
-                
-    if n % 2 == 1:
-        return pings_ordenados[n // 2]
-    else:
-        mitad1 = pings_ordenados[(n // 2) - 1]
-        mitad2 = pings_ordenados[n // 2]
-        return (mitad1 + mitad2) / 2.0
+    # CAMBIO 1: Se eliminó el algoritmo de burbuja manual (doble bucle + swap)
+    #           y el cálculo manual de la mediana par/impar.
+    # CAMBIO 2: Se usa statistics.median() que internamente ordena la lista
+    #           y calcula la mediana correctamente en todos los casos.
+    return statistics.median(lista_pings)
 
 
 # === PROGRAMA PRINCIPAL ===
