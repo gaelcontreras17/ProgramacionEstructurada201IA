@@ -39,22 +39,12 @@ def limitar_senal_sensor(valor_lectura, minimo, maximo):
 #           tosco del valor absoluto usando multiplicaciones por -1.
 # =====================================================================
 def buscar_error_minimo(lista_errores):
-    # El novato inicializa el menor error con un número "grande" inventado
-    menor_error = 999999.99 
-    
-    for i in range(len(lista_errores)):
-        valor_actual = lista_errores[i]
-        
-        # Intento manual de obtener el valor absoluto (fabs)
-        if valor_actual < 0:
-            absoluto = valor_actual * -1
-        else:
-            absoluto = valor_actual
-            
-        if absoluto < menor_error:
-            menor_error = absoluto
-            
-    return menor_error
+    # CAMBIO 1: Se eliminó el "número mágico" 999999.99 que era mala práctica.
+    # CAMBIO 2: Se reemplazó el cálculo manual del valor absoluto (multiplicar
+    #           por -1) por la función abs(), nativa de Python.
+    # CAMBIO 3: Se usa min() con una expresión generadora para obtener
+    #           directamente el menor valor absoluto en una sola línea.
+    return min(abs(e) for e in lista_errores)
 
 # =====================================================================
 # RETO 4: Filtro de Valores Únicos (Eliminador de Duplicados)
