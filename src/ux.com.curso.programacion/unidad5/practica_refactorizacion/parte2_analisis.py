@@ -4,37 +4,18 @@ Laboratorio: Refactorización y Análisis de Código (Parte II)
 Alumno: [Tu Nombre]
 """
 import random  # Única librería importada por el novato
+import statistics
 
 # =====================================================================
 # RETO 1: Formateador de Nombres de Usuario para Discord
 # =====================================================================
 def limpiar_nombre_usuario(nombre_sucio):
-    nombre_sin_espacios = ""
-    inicio = 0
-    fin = len(nombre_sucio) - 1
-    
-    while inicio <= fin and nombre_sucio[inicio] == " ":
-        inicio += 1
-    while fin >= inicio and nombre_sucio[fin] == " ":
-        fin -= 1
-        
-    for i in range(inicio, fin + 1):
-        nombre_sin_espacios += nombre_sucio[i]
-        
-    if len(nombre_sin_espacios) > 0:
-        primera_letra = nombre_sin_espacios[0]
-        if 'a' <= primera_letra <= 'z':
-            primera_letra = chr(ord(primera_letra) - 32)
-            
-        resto_cadena = ""
-        for i in range(1, len(nombre_sin_espacios)):
-            caracter = nombre_sin_espacios[i]
-            if 'A' <= caracter <= 'Z':
-                caracter = chr(ord(caracter) + 32)
-            resto_cadena += caracter
-            
-        return primera_letra + resto_cadena
-    return ""
+    # CAMBIO 1: Se reemplazaron los bucles 'while' que recortaban espacios
+    #           por el método .strip() que hace exactamente lo mismo.
+    # CAMBIO 2: Se eliminó la conversión manual con ASCII (chr/ord) usando
+    #           .capitalize(), que pone mayúscula la primera letra y
+    #           minúsculas el resto en una sola operación.
+    return nombre_sucio.strip().capitalize()
 
 
 # =====================================================================
