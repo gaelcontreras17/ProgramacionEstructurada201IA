@@ -13,18 +13,12 @@ import math  # El novato solo importó math esta vez
 #           o bucles anidados manuales sumamente redundantes.
 # =====================================================================
 def inicializar_tablero_vacio():
-    # El novato descubrió que puede "multiplicar" listas, pero no sabe
-    # el peligro de que todas las filas apunten a la misma dirección de memoria.
-    fila_base = [0, 0, 0, 0]
-    tablero = [fila_base, fila_base, fila_base, fila_base]
-    
-    # El novato intenta asegurarse de que funcione usando un ciclo manual 
-    # para "limpiar" cada celda por si acaso, lo cual es redundante
-    for i in range(4):
-        for j in range(4):
-            tablero[i][j] = 0
-            
-    return tablero
+    # CAMBIO 1: Se eliminó la creación con multiplicación de referencias
+    #           (era un bug clásico en Python: todas las filas apuntaban a la
+    #           misma dirección de memoria, así que modificar una afectaba a todas).
+    # CAMBIO 2: Se usa list comprehension para crear 4 filas independientes
+    #           en una sola línea, eliminando también el bucle redundante de "limpieza".
+    return [[0] * 4 for _ in range(4)]
 
 # =====================================================================
 # RETO 2: Recortador de Valores Atípicos (Clamping de Datos)
