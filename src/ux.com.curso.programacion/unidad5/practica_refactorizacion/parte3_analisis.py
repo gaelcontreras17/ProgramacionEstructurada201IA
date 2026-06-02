@@ -53,22 +53,12 @@ def buscar_error_minimo(lista_errores):
 # Problema: Algoritmo de búsqueda lineal doblemente anidado sumamente lento.
 # =====================================================================
 def depurar_usuarios_repetidos(lista_ids):
-    lista_limpia = []
-    
-    # Recorrido manual buscando si el elemento ya existe antes de agregarlo
-    for i in range(len(lista_ids)):
-        id_actual = lista_ids[i]
-        ya_existe = False
-        
-        for j in range(len(lista_limpia)):
-            if lista_limpia[j] == id_actual:
-                ya_existe = True
-                break
-                
-        if not ya_existe:
-            lista_limpia.append(id_actual)
-            
-    return lista_limpia
+    # CAMBIO 1: Se eliminó el doble bucle anidado O(n²) que buscaba duplicados.
+    # CAMBIO 2: Se usa dict.fromkeys() que elimina duplicados PRESERVANDO
+    #           el orden original de aparición (a diferencia de set(), que
+    #           pierde el orden). Aprovecha que los diccionarios en Python 3.7+
+    #           mantienen el orden de inserción.
+    return list(dict.fromkeys(lista_ids))
 
 
 # === PROGRAMA PRINCIPAL (Punto de entrada para probar) ===
