@@ -27,16 +27,10 @@ def inicializar_tablero_vacio():
 # Problema: Lógica condicional repetitiva y tosca que ignora funciones nativas.
 # =====================================================================
 def limitar_senal_sensor(valor_lectura, minimo, maximo):
-    # Árbol de decisiones manual y enredado para simular un tope
-    if valor_lectura < minimo:
-        resultado = minimo
-    else:
-        if valor_lectura > maximo:
-            resultado = maximo
-        else:
-            resultado = valor_lectura
-            
-    return resultado
+    # CAMBIO: Se reemplazó el if/else anidado por la combinación
+    #         max(minimo, min(valor_lectura, maximo)), que es el modismo
+    #         clásico de "clamp" (recortar a un rango) en una sola línea.
+    return max(minimo, min(valor_lectura, maximo))
 
 # =====================================================================
 # RETO 3: Buscador del Valor Más Cercano a Cero (Error Mínimo)
